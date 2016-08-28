@@ -41,16 +41,11 @@ public:
     
     DListItem<T> *pushFront(T *data);
     
-    //DListItem<T> *getHead() {return &head;}
-    //DListItem<T> *getTail() {return &tail;}
-    
     /* update last item value with data(free before), and move last item to head. */
     DListItem<T> *upgradeLast(T *data, T *&oldData);
     
     /* move target item to head. */
     int upgradeTarget(DListItem<T> *target);
-    
-    //void showList() const;
     
 };
 
@@ -122,8 +117,6 @@ DListItem<T> *DList<T>::upgradeLast(T *data, T *&oldData)
     if (last == &head)
         return NULL;
     
-    //if (last->data)
-        //free(last->data);
     oldData = last->data;
     
     last->data = data;
@@ -144,21 +137,6 @@ int DList<T>::upgradeTarget(DListItem<T> *target)
     this->insertAfter(&head, target);
     
     return 0;
-}
-
-
-template <typename T>
-void DList<T>::showList() const
-{
-    DListItem<T> *ptr = head.next;
-    
-    while (ptr != &tail)
-    {
-        std::cout << *ptr->data << "-->";
-        ptr = ptr->next;
-    }
-    
-    std::cout << std::endl;
 }
 
 typedef std::pair<int, int> itemType;
@@ -225,20 +203,5 @@ void LRUCache::set(int key, int value)
             map.insert(std::pair<int, DListItem<itemType> *>(key, target));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif /* LRU_Cache_hpp */
